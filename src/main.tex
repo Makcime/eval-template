@@ -1,0 +1,49 @@
+\documentclass[14pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{setspace}
+\setstretch{1.5}
+
+\newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
+
+\newcounter{qcnt}
+% \newcommand{\question}{\subsection{}}
+\newcommand{\question}{\par\noindent\refstepcounter{qcnt}
+    \par\large\underline{\textbf{Question \arabic{qcnt}:}}\normalsize\par}
+
+
+\newcommand{\inlineanswer}[1]{
+    \ifdefined\withanswers
+        {\color{red} \input{src/answers/#1.tex}}
+    \fi
+}
+
+\begin{document}
+
+\pagestyle{myheadings}
+\markright{Collège Fra-Angelico\hfill}
+
+
+\begin{center}
+\includegraphics[width=0.15\textwidth]{images/logo.png} \\
+\textbf{Collège Fra-Angelico} \\
+\textbf{Mathematics Exam}
+\end{center}
+
+% \input{crit.tex}
+
+\section{Première partie}
+
+\input{src/questions/q1.tex}
+\input{src/questions/q2.tex}
+% ... add more questions as needed
+
+\section{Deuxème partie}
+\input{src/questions/q3.tex}
+% ... add more answers as needed
+
+\end{document}
+
