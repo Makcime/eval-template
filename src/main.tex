@@ -1,76 +1,24 @@
 \documentclass[14pt, a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{graphicx}
-\usepackage{enumitem}
-\usepackage{xcolor}
-\usepackage{setspace}
-\setstretch{1.5}
-\usepackage{fancyhdr}
-\usepackage{array}
-\usepackage[top=0.1cm, headheight=4cm, includehead]{geometry}
-%\geometry{top=0.1cm, bottom=1cm, left=1cm, right=1cm}
-\usepackage{multirow}
-\usepackage{lastpage}
-
-\newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
-
-\newcounter{qcnt}
-% \newcommand{\question}{\subsection{}}
-\newcommand{\question}{\par\noindent\refstepcounter{qcnt}
-    \par\large\underline{\textbf{Question \arabic{qcnt}:}}\normalsize\par}
-
-\newcommand{\inlineanswer}[1]{
-    \ifdefined\withanswers
-        {\color{red} \input{src/answers/#1.tex}}
-    \fi
-}
+\usepackage{evaltemplate}
 
 % Define your document title and subtitle
 \newcommand{\doctitle}{Écaluation certificative n°2}
-\newcommand{\docsubtitle}{Chapitre 2 - Les puissances}
-
-\pagestyle{fancy}
-\fancyhf{} % Clear all headers/footers
-\fancyfoot[R]{\thepage/\pageref{LastPage}} % Empty footer
-\renewcommand{\arraystretch}{3}
-
-\fancypagestyle{firstpage}{
-    \fancyhead[C]{%
-        \begin{tabular}[t]{@{}m{0.33\textwidth}@{}m{0.33\textwidth}@{}m{0.33\textwidth}@{}}
-            \multirow{2}{*}{\includegraphics[width=0.27\textwidth]{images/logo.jpg}} &
-            \parbox{0.30\textwidth}{\raggedright \underline{Prénom :}} &
-            \parbox{0.30\textwidth}{\raggedright \underline{Classe :}} \\
-            & \parbox{0.30\textwidth}{\raggedright \underline{Nom :}} &
-            \parbox{0.30\textwidth}{\raggedright \underline{Date :}} \\
-        \end{tabular}
-        }
-}
-
-\fancypagestyle{otherpages}{
-    \fancyhead[L]{\doctitle } % Empty header
-    \fancyhead[R]{\docsubtitle } % Empty header
-    \fancyfoot[R]{\thepage/\pageref{LastPage}} % Empty footer
-    %\renewcommand{\headrulewidth}{0pt} % No horizontal line
-    %\renewcommand{\footrulewidth}{2pt} % No horizontal line
-}
+\newcommand{\docsubtitle}{Chapitre 2 - Les propriétés des puissances}
+\newcommand{\course}{Mathématiques}
 
 \begin{document}
 
-\pagestyle{fancy}
-\thispagestyle{firstpage}
+% Display header with logo, name, classe, etc
+\hdr
+
 % Display the title and subtitle
-\begin{center}
-    {\LARGE \textbf{\doctitle} \\[1em]}
-    {\large \docsubtitle}
-\end{center}
+\titlebox{\doctitle}{\docsubtitle}
+
+\noindent\hrule
 \input{crit.tex}
 \newpage
 
-\newgeometry{headheight=12pt} % Reset the headheight for other pages
-\thispagestyle{otherpages}
 \section{Première partie}
-
 \input{questions/q1.tex}
 \input{questions/q2.tex}
 % ... add more questions as needed

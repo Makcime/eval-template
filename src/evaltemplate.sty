@@ -1,0 +1,77 @@
+% evaltemplate.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{evaltemplate}[2023/10/02 Latex Template for evaluation]
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{graphicx}
+\RequirePackage{enumitem}
+\RequirePackage{xcolor}
+\RequirePackage{setspace}
+\RequirePackage{fancyhdr}
+\RequirePackage{array}
+\RequirePackage[left=2.5cm,right=2.5cm, bottom=2.5cm, top=2.5cm]{geometry}
+\RequirePackage{multirow}
+\RequirePackage{lastpage}
+\RequirePackage{tabularx}
+\RequirePackage{layout}
+\usepackage{etoolbox} % for the \ifdefempty command
+
+
+\AtBeginDocument{
+    \setstretch{1.5}
+}
+
+\newcommand{\titlebox}[2]{%
+    \noindent\fbox{%
+        \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+            \centering
+            \Large\textbf{#1} \\[0.5em] % Space between title and subtitle
+            \large #2
+        }%
+    }
+    \par % Ensure a new line after the title box
+}
+
+\pagestyle{fancy}
+\fancyhf{} % Clear all headers/footers
+\fancyhead[L]{\course} % Empty header
+\fancyhead[R]{\doctitle} % Empty header
+
+\fancyfoot[R]{Page \thepage\ sur \pageref{LastPage}}
+\fancyfoot[L]{\docsubtitle}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
+
+\newcounter{qcnt}
+\newcommand{\question}{\par\noindent\refstepcounter{qcnt}
+    \par\large\underline{\textbf{Question \arabic{qcnt}:}}\normalsize\par}
+
+\newcommand{\inlineanswer}[1]{
+    \ifdefined\withanswers
+        {\color{red} \input{answers/#1.tex}}
+    \fi
+}
+
+\newcommand{\hdr}[1][images/logo.jpg]{%
+    \renewcommand{\arraystretch}{3}
+    \begin{tabular}[t]{
+            @{}m{0.33\textwidth}
+            @{}>{\raggedleft}p{0.13\textwidth}
+            @{}m{0.20\textwidth}
+            @{}>{\raggedleft}p{0.13\textwidth}
+            @{}m{0.20\textwidth}
+            @{}
+            }
+            \multirow{2}{*}{\includegraphics[width=0.27\textwidth]{images/logo.jpg}} &
+            Prénom : & \hspace{1em}\underline{\hspace{0.15\textwidth}} &
+            Classe : & \hspace{1em}\underline{\hspace{0.15\textwidth}} \\
+            & Nom : & \hspace{1em}\underline{\hspace{0.15\textwidth}} &
+            Date : & \hspace{1em}\underline{\hspace{0.15\textwidth}} \\
+    \end{tabular}
+
+    \renewcommand{\arraystretch}{1}
+    \noindent\hrule
+    }
