@@ -15,7 +15,11 @@
 \RequirePackage{lastpage}
 \RequirePackage{tabularx}
 \RequirePackage{layout}
-\usepackage{etoolbox} % for the \ifdefempty command
+\RequirePackage{makecell}
+\RequirePackage{etoolbox} % for the \ifdefempty command
+\RequirePackage{amsmath}
+\RequirePackage{multicol}
+\RequirePackage{xstring}
 
 
 \AtBeginDocument{
@@ -53,6 +57,26 @@
     \ifdefined\withanswers
         {\color{red} \input{answers/#1.tex}}
     \fi
+}
+
+\newcommand{\inputqora}[1]{
+    \ifdefined\withanswers
+        {\input{answers/a#1.tex}}
+    \else
+        \input{questions/q#1.tex}
+    \fi
+}
+
+\newcommand{\QAList}[2]{
+    \begin{multicols}{2}
+        \begin{enumerate}[label=\alph*)]
+        \ifdefined\withanswers
+            \ForEachX{,}{\item #1}{#2}
+        \else
+            \ForEach{,}{\item #1}{#1}
+        \fi
+        \end{enumerate}
+    \end{multicols}
 }
 
 \newcommand{\hdr}[1][images/logo.jpg]{%
