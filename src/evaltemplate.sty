@@ -20,17 +20,24 @@
 \RequirePackage{amsmath}
 \RequirePackage{multicol}
 \RequirePackage{xstring}
+\RequirePackage{calc}
 
+\newlength{\mylength}
+\newcommand{\fillin}{%
+  \setlength{\mylength}{\linewidth-\widthof{\theenumi}-\labelsep}%
+  \underline{\hspace{\mylength}}%
+}
 
 \AtBeginDocument{
     \setstretch{1.5}
 }
 
+
 \newcommand{\titlebox}[2]{%
     \noindent\fbox{%
         \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
             \centering
-            \Large\textbf{#1} \\[0.5em] % Space between title and subtitle
+            \Large\textbf{#1} \\[0.1em] % Space between title and subtitle
             \large #2
         }%
     }

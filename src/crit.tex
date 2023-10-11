@@ -6,29 +6,47 @@
 % The first column is set to be 0.75 (or 3/4) of the width of the table,
 % while the X column will take up the remaining space.
  
-\begin{tabularx}{\textwidth}{|p{0.75\textwidth}|X|}
-\hline
-\large Couleur générale & \\
-\hline
-\textbf{C1: Connaître}
-\begin{itemize}
-    \item Objectif 1
-    \item Objectif 2
-    \item ...
-\end{itemize} & \\
-\hline
-\textbf{C2: Appliquer}
-\begin{itemize}
-    \item Objectif 1
-    \item Objectif 2
-    \item ...
-\end{itemize} & \\
-\hline
-\textbf{C3: Transférer}
-\begin{itemize}
-    \item Objectif 1
-    \item Objectif 2
-    \item ...
-\end{itemize} & \\
-\hline
-\end{tabularx}
+{ \small
+\begin{spacing}{1.2}
+	\begin{tabularx}{\textwidth}{|X|}
+		\hline
+		\large Couleur générale \\
+		\hline
+		\textbf{C1: Connaître}
+		\begin{itemize}
+		    \item Objectif 1
+		    \item Objectif 2
+		    % \item ...
+		\end{itemize} \\
+		\hline
+		\textbf{C2: Appliquer}
+		\begin{itemize}
+		    \item Objectif 1
+		    \item Objectif 2
+		    % \item ...
+		\end{itemize} \\
+		\hline
+		\textbf{C3: Transférer}
+		\begin{itemize}
+		    \item Objectif 1
+		    \item Objectif 2
+		    % \item ...
+		\end{itemize} \\
+		\hline
+		    \parbox{\dimexpr\textwidth-2\tabcolsep\relax}{
+		        \strut
+		        \textbf{Note finale}
+		        \vspace{1.2cm}
+		        \strut 
+		     } \\
+		\hline
+		    \parbox{\dimexpr\textwidth-2\tabcolsep\relax}{
+		        \strut
+		        \textbf{Remarques}
+		        \vspace{1.5cm}
+		        \strut
+		 } \\
+		\hline
+	\end{tabularx}
+\end{spacing}
+}
