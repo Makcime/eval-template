@@ -26,9 +26,12 @@
 \RequirePackage{makecell}
 \RequirePackage{etoolbox} % for the \ifdefempty command
 \RequirePackage{amsmath}
+\RequirePackage{amssymb}
 \RequirePackage{multicol}
 \RequirePackage{xstring}
 \RequirePackage{calc}
+\RequirePackage{pgffor}
+\RequirePackage{fancyvrb} % for "\Verb" macro
 
 \newlength{\mylength}
 \newcommand{\fillin}{%
@@ -39,7 +42,6 @@
 \AtBeginDocument{
     \setstretch{1.5}
 }
-
 
 \newcommand{\titlebox}[2]{%
     \noindent\fbox{%
@@ -62,6 +64,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
+% \newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
 \newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
 
 \newcounter{qcnt}
@@ -95,7 +98,7 @@
 }
 
 \newcommand{\hdr}[1][images/logo.jpg]{%
-    \renewcommand{\arraystretch}{3}
+    \renewcommand{\arraystretch}{2}
     \begin{tabular}[t]{
             @{}m{0.33\textwidth}
             @{}>{\raggedleft}p{0.13\textwidth}
@@ -111,6 +114,20 @@
             Date : & \hspace{1em}\underline{\hspace{0.15\textwidth}} \\
     \end{tabular}
 
-    \renewcommand{\arraystretch}{1}
-    \noindent\hrule
+\renewcommand{\arraystretch}{1}
+\noindent\hrule
+}
+
+
+\newcommand{\parallelsum}{\mathrel{/\mkern-5mu/}}
+
+
+\newcommand{\drawline}{
+    \noindent \underline{\hspace{\linewidth}} \\
+}
+
+\newcommand{\drawmultilines}[1]{%
+    \foreach \n in {1,...,#1} {%
+        \drawline
     }
+}
