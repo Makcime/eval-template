@@ -32,6 +32,7 @@
 \RequirePackage{calc}
 \RequirePackage{pgffor}
 \RequirePackage{fancyvrb} % for "\Verb" macro
+\RequirePackage{hhline}
 
 \newlength{\mylength}
 \newcommand{\fillin}{%
@@ -69,7 +70,7 @@
 
 \newcounter{qcnt}
 \newcommand{\question}{\par\noindent\refstepcounter{qcnt}
-	\par\large\underline{\textbf{Question \arabic{qcnt}:}}\normalsize\par}
+	\par\large\underline{\textbf{Question \arabic{qcnt}:}}\normalsize\par\noindent}
 
 \newcommand{\inlineanswer}[1]{
 	\ifdefined\withanswers
@@ -122,12 +123,14 @@
 \newcommand{\parallelsum}{\mathrel{/\mkern-5mu/}}
 
 
-\newcommand{\drawline}{
-	\noindent \underline{\hspace{\linewidth}} \\
+\newcommand{\drawline}{%
+	\noindent \hrulefill
 }
+
 
 \newcommand{\drawmultilines}[1]{%
 	\foreach \n in {1,...,#1} {%
-			\drawline
+			\noindent \underline{\hspace{\linewidth}} \\
 		}
 }
+
