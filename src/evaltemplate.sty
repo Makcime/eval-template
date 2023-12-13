@@ -1,6 +1,6 @@
 % evaltemplate.sty
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{evaltemplate}[2023/10/02 Latex Template for evaluation]
+\ProvidesPackage{evaltemplate}[2023/12/01 Latex Template for evaluation]
 
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
@@ -32,26 +32,27 @@
 \RequirePackage{calc}
 \RequirePackage{pgffor}
 \RequirePackage{fancyvrb} % for "\Verb" macro
+\RequirePackage{hhline}
 
 \newlength{\mylength}
 \newcommand{\fillin}{%
-  \setlength{\mylength}{\linewidth-\widthof{\theenumi}-\labelsep}%
-  \underline{\hspace{\mylength}}%
+	\setlength{\mylength}{\linewidth-\widthof{\theenumi}-\labelsep}%
+	\underline{\hspace{\mylength}}%
 }
 
 \AtBeginDocument{
-    \setstretch{1.5}
+	\setstretch{1.5}
 }
 
 \newcommand{\titlebox}[2]{%
-    \noindent\fbox{%
-        \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
-            \centering
-            \Large\textbf{#1} \\[0.1em] % Space between title and subtitle
-            \large #2
-        }%
-    }
-    \par % Ensure a new line after the title box
+	\noindent\fbox{%
+		\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+			\centering
+			\Large\textbf{#1} \\[0.1em] % Space between title and subtitle
+			\large #2
+		}%
+	}
+	\par % Ensure a new line after the title box
 }
 
 \pagestyle{fancy}
@@ -69,65 +70,67 @@
 
 \newcounter{qcnt}
 \newcommand{\question}{\par\noindent\refstepcounter{qcnt}
-    \par\large\underline{\textbf{Question \arabic{qcnt}:}}\normalsize\par}
+	\par\large\underline{\textbf{Question \arabic{qcnt}:}}\normalsize\par\noindent}
 
 \newcommand{\inlineanswer}[1]{
-    \ifdefined\withanswers
-        {\color{red} \input{answers/#1.tex}}
-    \fi
+	\ifdefined\withanswers
+		{\color{red} \input{answers/#1.tex}}
+	\fi
 }
 
 \newcommand{\inputqora}[1]{
-    \ifdefined\withanswers
-        {\input{answers/a#1.tex}}
-    \else
-        \input{questions/q#1.tex}
-    \fi
+	\ifdefined\withanswers
+		{\input{answers/a#1.tex}}
+	\else
+		\input{questions/q#1.tex}
+	\fi
 }
 
 \newcommand{\QAList}[2]{
-    \begin{multicols}{2}
-        \begin{enumerate}[label=\alph*)]
-        \ifdefined\withanswers
-            \ForEachX{,}{\item #1}{#2}
-        \else
-            \ForEach{,}{\item #1}{#1}
-        \fi
-        \end{enumerate}
-    \end{multicols}
+	\begin{multicols}{2}
+		\begin{enumerate}[label=\alph*)]
+			\ifdefined\withanswers
+			\ForEachX{,}{\item #1}{#2}
+			      \else
+			      \ForEach{,}{\item #1}{#1}
+			      \fi
+		\end{enumerate}
+	\end{multicols}
 }
 
 \newcommand{\hdr}[1][images/logo.jpg]{%
-    \renewcommand{\arraystretch}{2}
-    \begin{tabular}[t]{
-            @{}m{0.33\textwidth}
-            @{}>{\raggedleft}p{0.13\textwidth}
-            @{}m{0.20\textwidth}
-            @{}>{\raggedleft}p{0.13\textwidth}
-            @{}m{0.20\textwidth}
-            @{}
-            }
-            \multirow{2}{*}{\includegraphics[width=0.27\textwidth]{images/logo.jpg}} &
-            Prénom : & \hspace{1em}\underline{\hspace{0.15\textwidth}} &
-            Classe : & \hspace{1em}\underline{\hspace{0.15\textwidth}} \\
-            & Nom : & \hspace{1em}\underline{\hspace{0.15\textwidth}} &
-            Date : & \hspace{1em}\underline{\hspace{0.15\textwidth}} \\
-    \end{tabular}
+	\renewcommand{\arraystretch}{2}
+	\begin{tabular}[t]{
+		@{}m{0.33\textwidth}
+		@{}>{\raggedleft}p{0.13\textwidth}
+		@{}m{0.20\textwidth}
+		@{}>{\raggedleft}p{0.13\textwidth}
+		@{}m{0.20\textwidth}
+		@{}
+		}
+		\multirow{2}{*}{\includegraphics[width=0.27\textwidth]{images/logo.jpg}} &
+		Prénom :                                                                 & \hspace{1em}\underline{\hspace{0.15\textwidth}} &
+		Classe :                                                                 & \hspace{1em}\underline{\hspace{0.15\textwidth}}                                                     \\
+		                                                                         & Nom :                                           & \hspace{1em}\underline{\hspace{0.15\textwidth}} &
+		Date :                                                                   & \hspace{1em}\underline{\hspace{0.15\textwidth}}                                                     \\
+	\end{tabular}
 
-\renewcommand{\arraystretch}{1}
-\noindent\hrule
+	\renewcommand{\arraystretch}{1}
+	\noindent\hrule
 }
 
 
 \newcommand{\parallelsum}{\mathrel{/\mkern-5mu/}}
 
 
-\newcommand{\drawline}{
-    \noindent \underline{\hspace{\linewidth}} \\
+\newcommand{\drawline}{%
+	\noindent \hrulefill
 }
 
+
 \newcommand{\drawmultilines}[1]{%
-    \foreach \n in {1,...,#1} {%
-        \drawline
-    }
+	\foreach \n in {1,...,#1} {%
+			\noindent \underline{\hspace{\linewidth}} \\
+		}
 }
+
