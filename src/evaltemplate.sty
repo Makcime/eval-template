@@ -33,6 +33,7 @@
 \RequirePackage{pgffor}
 \RequirePackage{fancyvrb} % for "\Verb" macro
 \RequirePackage{hhline}
+\RequirePackage{ifthen}
 
 \newlength{\mylength}
 \newcommand{\fillin}{%
@@ -58,7 +59,9 @@
 \pagestyle{fancy}
 \fancyhf{} % Clear all headers/footers
 \fancyhead[L]{\course} % Empty header
-\fancyhead[R]{\doctitle} % Empty header
+\fancyhead[C]{\doctitle} % Empty header
+\fancyhead[R]{\release\version}
+
 
 \fancyfoot[R]{Page \thepage\ sur \pageref{LastPage}}
 \fancyfoot[L]{\docsubtitle}
@@ -98,7 +101,7 @@
 	\end{multicols}
 }
 
-\newcommand{\hdr}[1][images/logo.jpg]{%
+\newcommand{\hdr}[1][src/images/logo.jpg]{%
 	\renewcommand{\arraystretch}{2}
 	\begin{tabular}[t]{
 		@{}m{0.33\textwidth}
@@ -108,11 +111,11 @@
 		@{}m{0.20\textwidth}
 		@{}
 		}
-		\multirow{2}{*}{\includegraphics[width=0.27\textwidth]{images/logo.jpg}} &
-		Prénom :                                                                 & \hspace{1em}\underline{\hspace{0.15\textwidth}} &
-		Classe :                                                                 & \hspace{1em}\underline{\hspace{0.15\textwidth}}                                                     \\
-		                                                                         & Nom :                                           & \hspace{1em}\underline{\hspace{0.15\textwidth}} &
-		Date :                                                                   & \hspace{1em}\underline{\hspace{0.15\textwidth}}                                                     \\
+		\multirow{2}{*}{\includegraphics[width=0.27\textwidth]{src/images/logo.jpg}} &
+		Prénom :                                                                     & \hspace{1em}\underline{\hspace{0.15\textwidth}} &
+		Nom :                                                                        & \hspace{1em}\underline{\hspace{0.15\textwidth}}                                                     \\
+		                                                                             & Classe :                                        & \hspace{1em}\underline{\hspace{0.15\textwidth}} &
+		Date :                                                                       & \hspace{1em}\underline{\hspace{0.15\textwidth}}                                                     \\
 	\end{tabular}
 
 	\renewcommand{\arraystretch}{1}
@@ -134,3 +137,10 @@
 		}
 }
 
+\newcommand{\versions}[4]{%
+	\ifthenelse{\equal{\version}{A}}{#1}{%
+		\ifthenelse{\equal{\version}{B}}{#2}{%
+			\ifthenelse{\equal{\version}{C}}{#3}{%
+				\ifthenelse{\equal{\version}{D}}{#4}{%
+					Error: Undefined version!}}}}%
+}
