@@ -35,9 +35,13 @@
 \RequirePackage{hhline}
 \RequirePackage{ifthen}
 \RequirePackage{tikz}
+\usetikzlibrary{calc}
 \RequirePackage{xparse} % Pour les commandes avancées
+\RequirePackage{ifthen}
+\RequirePackage{pgf}
 
-
+% set default enum to alpha
+\renewcommand{\theenumi}{\alph{enumi}}
 
 \newlength{\mylength}
 \newcommand{\fillin}{%
