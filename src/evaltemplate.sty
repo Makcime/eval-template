@@ -40,6 +40,7 @@
 \RequirePackage{ifthen}
 \RequirePackage{pgf}
 
+
 % set default enum to alpha
 \renewcommand{\theenumi}{\alph{enumi}}
 
@@ -59,6 +60,9 @@
 			\centering
 			\Large\textbf{#1} \\[0.1em] % Space between title and subtitle
 			\large #2
+			% \ifdefined\withanswers
+			% 	\\{\color{red}\textbf{CORRECTIF}}
+			% \fi
 		}%
 	}
 	\par % Ensure a new line after the title box
@@ -70,14 +74,24 @@
 \fancyhead[C]{\doctitle} % Empty header
 \fancyhead[R]{\release\version}
 
-
 \fancyfoot[R]{Page \thepage\ sur \pageref{LastPage}}
 \fancyfoot[L]{\docsubtitle}
+
+\ifdefined\withanswers
+	\fancyfoot[C]{\color{red}\textbf{CORRECTIF}}
+\fi
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
 % \newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
 \newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
+\newcommand{\corr}[1]{\textcolor{red}{#1}}
+\newcommand{\corrbf}[1]{\textcolor{red}{\textbf{#1}}}
+\newcommand{\ifnotcorr}[1]{
+	\ifx\withanswers\undefined
+		#1
+	\fi
+}
 
 \newcounter{qcnt}
 \newcommand{\question}{\par\noindent\refstepcounter{qcnt}
@@ -91,9 +105,9 @@
 
 \newcommand{\inputqora}[1]{
 	\ifdefined\withanswers
-		{\input{answers/a#1.tex}}
+		{\input{src/answers/a#1.tex}}
 	\else
-		\input{questions/q#1.tex}
+		\input{src/questions/q#1.tex}
 	\fi
 }
 

@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper]{extarticle}
+\documentclass[14pt, a4paper]{extarticle}
 \usepackage{src/evaltemplate}
 
 % Define your document title and subtitle
@@ -8,25 +8,26 @@
 
 \begin{document}
 
-% Display header with logo, name, classe, etc
-\hdr
-
-% Display the title and subtitle
-\titlebox{\doctitle}{\docsubtitle}
-
 \boldmath
-\noindent\hrule
-\input{src/crit.tex}
-\newpage
+% Display header with logo, name, classe, etc
+\ifnotcorr{
+	\hdr
+	% Display the title and subtitle
+	\titlebox{\doctitle}{\docsubtitle}
+	\noindent\hrule
+
+	\input{src/crit.tex}
+	\newpage
+}
 
 \section{Première partie}
-\input{src/questions/q1.tex}
-\input{src/questions/q2.tex}
+\inputqora{1}
+\input{src/questions/q2}
 % ... add more questions as needed
 
 \newpage
 \section{Deuxème partie}
-\input{src/questions/q3.tex}
+\inputqora{3}
 % ... add more answers as needed
 
 \end{document}
