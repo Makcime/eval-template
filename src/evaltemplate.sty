@@ -39,6 +39,7 @@
 \RequirePackage{xparse} % Pour les commandes avancées
 \RequirePackage{ifthen}
 \RequirePackage{pgf}
+\RequirePackage{ulem}
 
 
 % set default enum to alpha
@@ -85,6 +86,7 @@
 
 % \newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
 \newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
+\newcommand{\corrblock}[1]{\color{red}{#1}}
 \newcommand{\corr}[1]{\textcolor{red}{#1}}
 \newcommand{\corrbf}[1]{\textcolor{red}{\textbf{#1}}}
 \newcommand{\ifnotcorr}[1]{
@@ -165,4 +167,8 @@
 			\ifthenelse{\equal{\version}{C}}{#3}{%
 				\ifthenelse{\equal{\version}{D}}{#4}{%
 					Error: Undefined version!}}}}%
+}
+
+\newcommand{\ifeabs}[2]{
+	\ifthenelse{\equal{\version}{D}}{#1}{#2}
 }
