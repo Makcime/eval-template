@@ -24,7 +24,8 @@ concatenate: | build
 
 # Concatenate correctif versions
 concatenate_correctif: | build
-	pdfunite $(filter-out build/$(name)_$(release)_ABCD_correctif.pdf,$(wildcard build/$(name)_$(release)_A_correctif.pdf build/$(name)_$(release)_B_correctif.pdf build/$(name)_$(release)_C_correctif.pdf build/$(name)_$(release)_D_correctif.pdf)) build/$(name)_$(release)_ABCD_correctif.pdf
+	soffice --headless --convert-to pdf src/corr.docx --outdir build
+	pdfunite build/corr.pdf $(filter-out build/$(name)_$(release)_ABCD_correctif.pdf,$(wildcard build/$(name)_$(release)_A_correctif.pdf build/$(name)_$(release)_B_correctif.pdf build/$(name)_$(release)_C_correctif.pdf build/$(name)_$(release)_D_correctif.pdf)) build/$(name)_$(release)_ABCD_correctif.pdf
 
 # Ensure the main build directory exists
 build:
