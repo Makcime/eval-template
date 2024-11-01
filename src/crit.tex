@@ -26,9 +26,24 @@
 		  \parbox{\dimexpr\textwidth-2\tabcolsep\relax}{
 			  \strut
 			  \textbf{Couleur globale}
-
 			  \begin{center}
-				  \renewcommand{\arraystretch}{1.5}
+				  \renewcommand{\arraystretch}{1.3}
+				  \begin{tabular}{| *{12}{C{0.8cm}|} }
+					  \hline
+					  R1 & R2 & R3 & O1 & O2 & O3 & V1 & V2 & V3 & B1 & B2 & B3 \\
+					  \hline
+					  % \rule{0pt}{6ex}\answerrow \\ % Use the answer row constructed above
+					  % \hline
+				  \end{tabular}
+			  \end{center}
+
+		  } \\
+		  \hline
+		  \parbox{\dimexpr\textwidth-2\tabcolsep\relax}{
+			  \strut
+			  \textbf{Auto-évaluation}
+			  \begin{center}
+				  \renewcommand{\arraystretch}{1.3}
 				  \begin{tabular}{| *{12}{C{0.8cm}|} }
 					  \hline
 					  R1 & R2 & R3 & O1 & O2 & O3 & V1 & V2 & V3 & B1 & B2 & B3 \\
@@ -45,7 +60,7 @@
 			  \textbf{Couleur par question}
 			  % \vspace{1.2cm}
 			  \begin{center}
-				  \renewcommand{\arraystretch}{2}
+				  \renewcommand{\arraystretch}{1.5}
 				  \begin{tabular}{| *{\value{qcntvalue}}{C{1.5cm}|} }
 					  \hline
 					  \tableheader \\ % Use the header constructed above
@@ -58,9 +73,9 @@
 		  \hline
 		  \parbox{\dimexpr\textwidth-2\tabcolsep\relax}{
 			  \strut
-			  \textbf{Remarques}
-		  \\\versions{}{}{}{Version EABS}
-			  \vspace{1.2cm}
+			  \textbf{Remarques : }
+			  \versions{}{}{}{Version EABS}
+			  % \vspace{0.5cm}
 			  \strut
 		  } \\
 		  \hline
@@ -68,23 +83,68 @@
   \end{spacing}
  }
 
-\section*{Objectifs}
- % Targeted competences and table for grading can be set here. For example:
+
  { \small
-  \begin{spacing}{1.2}
-	  \begin{tabularx}{\textwidth}{|X|}
+  \subsection*{Objectifs}
+  % Targeted competences and table for grading can be set here. For example:
+  \begin{spacing}{1.5}
+	  % \begin{tabularx}{\textwidth}{|X|}
+	  %  \hline
+	  % -		  \textbf{Je suis capable de...}
+	  % -		  \begin{itemize}
+	  % -			  \item Item 1
+	  % -			        \begin{itemize}[label={}]
+	  % -				        \item sub item 1
+	  % -				        \item sub item 2
+	  % -			        \end{itemize}
+	  % -			  \item Item 2
+	  % -		  \end{itemize} \\
+	  %  \hline
+	  % \end{tabularx}
+
+	  % \noindent
+	  % \begin{tabularx}{\textwidth}{|X*{5}{c}|}
+	  %  \hline
+	  %  % \textbf{Je suis capable de...}                                                                      & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+	  %  \textbf{Je suis capable de...}                                                                      &            &            &            &            &            \\
+	  %  \hline
+	  %  Effectuer des divisions Euclidienne par calcul écrit.                                               & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
+	  %  \hline
+	  %  Formuler et utiliser dans différents contextes la relation fondamentale de la division Euclidienne. & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
+	  %  \hline
+	  %  Reconnaitre des nombres premiers entre eux.                                                         & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
+	  %  \hline
+	  %  Déterminer l’ensemble des diviseurs et des multiples d’un nombre.                                   & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
+	  %  \hline
+	  %  Déterminer les diviseurs communs et le PGCD de deux nombres ou plus.                                & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
+	  %  \hline
+	  %  Déterminer les multiples communs et le PPCM de deux nombres ou plus.                                & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
+	  %  \hline
+	  %  Résoudre des problèmes relatifs au PGCD ou PPCM.                                                    & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
+	  %  \hline
+	  % \end{tabularx}
+
+	  \noindent
+	  \begin{tabularx}{\textwidth}{|X| *{2}{c|}}
 		  \hline
-		  \textbf{Je suis capable de...}
-		  \begin{itemize}
-			  \item Item 1
-			        \begin{itemize}[label={}]
-				        \item sub item 1
-				        \item sub item 2
-			        \end{itemize}
-			  \item Item 2
-		  \end{itemize} \\
+		  % \textbf{Je suis capable de...}                                                                      & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+		  \textbf{Je suis capable de...}                                                                      &           &           \\
+		  \hline
+		  Effectuer des divisions Euclidienne par calcul écrit.                                               & \ding{51} & \ding{55} \\
+		  \hline
+		  Formuler et utiliser dans différents contextes la relation fondamentale de la division Euclidienne. & \ding{51} & \ding{55} \\
+		  \hline
+		  Reconnaitre des nombres premiers entre eux.                                                         & \ding{51} & \ding{55} \\
+		  \hline
+		  Déterminer l’ensemble des diviseurs et des multiples d’un nombre.                                   & \ding{51} & \ding{55} \\
+		  \hline
+		  Déterminer les diviseurs communs et le PGCD de deux nombres ou plus.                                & \ding{51} & \ding{55} \\
+		  \hline
+		  Déterminer les multiples communs et le PPCM de deux nombres ou plus.                                & \ding{51} & \ding{55} \\
+		  \hline
+		  Résoudre des problèmes relatifs au PGCD ou PPCM.                                                    & \ding{51} & \ding{55} \\
 		  \hline
 	  \end{tabularx}
+
   \end{spacing}
  }
-
