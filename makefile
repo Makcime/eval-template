@@ -1,7 +1,7 @@
 .PHONY: all A B C D correctif_A correctif_B correctif_C correctif_D clean concatenate concatenate_correctif
 
 name ?= mathx_evalx
-release ?= v2.0
+release ?= v3.0
 
 # Compile all versions (regular and correctif) and concatenate them
 all: A B C D correctif_A correctif_B correctif_C correctif_D concatenate concatenate_correctif
