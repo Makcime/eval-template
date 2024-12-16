@@ -18,7 +18,7 @@
 \RequirePackage{setspace}
 \RequirePackage{fancyhdr}
 \RequirePackage{array}
-\RequirePackage[left=2.5cm,right=2.5cm, bottom=2.5cm, top=2.5cm]{geometry}
+\RequirePackage[left=1.5cm,right=1.5cm, bottom=2cm, top=2cm]{geometry}
 \RequirePackage{multirow}
 \RequirePackage{lastpage}
 \RequirePackage{tabularx}
@@ -58,7 +58,7 @@
 
 \newcommand{\titlebox}[2]{%
 	\noindent\fbox{%
-		\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+		\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{%
 			\centering
 			\Large\textbf{#1} \\[0.1em] % Space between title and subtitle
 			\large #2
@@ -72,18 +72,39 @@
 
 \pagestyle{fancy}
 \fancyhf{} % Clear all headers/footers
-\fancyhead[L]{\course} % Empty header
-\fancyhead[C]{\doctitle} % Empty header
-\fancyhead[R]{\release\version}
+% \fancyhead[L]{\course} % Empty header
+\fancyhead[L]{Nom : } % Empty header
+% \fancyhead[C]{\doctitle} % Empty header
+\fancyhead[R]{\doctitle\  -- \release\version}
 
 \fancyfoot[R]{Page \thepage\ sur \pageref{LastPage}}
-\fancyfoot[L]{\docsubtitle}
+\fancyfoot[L]{\course\ : \docsubtitle}
 
 \ifdefined\withanswers
 	\fancyfoot[C]{\color{red}\textbf{CORRECTIF}}
 \fi
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
+
+% Define a custom style for the first page
+\fancypagestyle{firstpage}{
+	\fancyhf{}                      % Clear all headers/footers for the first page
+	% \fancyhead[L]{\course}          % Custom header for the first page
+	% \fancyhead[C]{\doctitle}
+	% \fancyhead[R]{\release\version}
+
+	\fancyfoot[R]{Page \thepage\ sur \pageref{LastPage}}
+	\fancyfoot[L]{\docsubtitle}
+
+	\ifdefined\withanswers
+		\fancyfoot[C]{\color{red}\textbf{CORRECTIF}}
+	\fi
+
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0.4pt}
+	\newgeometry{top=0.5cm, bottom=0.2cm, left=1.5cm, right=1.5cm}
+}
+
 
 % \newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
 \newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
@@ -131,9 +152,9 @@
 	\begin{tabular}[t]{
 		@{}m{0.33\textwidth}
 		@{}>{\raggedleft}p{0.13\textwidth}
-		@{}m{0.20\textwidth}
+		@{}m{0.18\textwidth}
 		@{}>{\raggedleft}p{0.13\textwidth}
-		@{}m{0.20\textwidth}
+		@{}m{0.18\textwidth}
 		@{}
 		}
 		\multirow{2}{*}{\includegraphics[width=0.27\textwidth]{src/images/logo.jpg}} &
@@ -144,7 +165,8 @@
 	\end{tabular}
 
 	\renewcommand{\arraystretch}{1}
-	\noindent\hrule
+	% \noindent\hrule
+	\vspace{0.5cm}
 }
 
 
