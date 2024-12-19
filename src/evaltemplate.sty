@@ -18,7 +18,7 @@
 \RequirePackage{setspace}
 \RequirePackage{fancyhdr}
 \RequirePackage{array}
-\RequirePackage[left=1.5cm,right=1.5cm, bottom=2cm, top=2cm]{geometry}
+\RequirePackage[left=1.8cm,right=1.8cm, bottom=2cm, top=2cm]{geometry}
 \RequirePackage{multirow}
 \RequirePackage{lastpage}
 \RequirePackage{tabularx}
@@ -34,13 +34,15 @@
 \RequirePackage{fancyvrb} % for "\Verb" macro
 \RequirePackage{hhline}
 \RequirePackage{ifthen}
-\RequirePackage{tikz}
+\RequirePackage{tikz} % For drawing diagrams
+\usetikzlibrary{arrows.meta}
 \usetikzlibrary{calc}
 \RequirePackage{xparse} % Pour les commandes avancées
 \RequirePackage{ifthen}
 \RequirePackage{pgf}
 \RequirePackage{ulem}
 \RequirePackage{pifont}
+\RequirePackage{tcolorbox}
 
 
 % set default enum to alpha
@@ -57,7 +59,9 @@
 }
 
 \newcommand{\titlebox}[2]{%
-	\noindent\fbox{%
+
+	\begin{tcolorbox}[colback=white,colframe=black]
+		% \noindent\fbox{%
 		\parbox{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}{%
 			\centering
 			\Large\textbf{#1} \\[0.1em] % Space between title and subtitle
@@ -66,19 +70,24 @@
 			% 	\\{\color{red}\textbf{CORRECTIF}}
 			% \fi
 		}%
-	}
-	\par % Ensure a new line after the title box
+		% }
+	\end{tcolorbox}
+	% \par % Ensure a new line after the title box
 }
 
+% Apply a smaller font size to headers and footers
+% \renewcommand{\footnotesize}{\small} % or use \scriptsize if desired
+% \renewcommand{\headfont}{\small} % Global header font size
+% \renewcommand{\footfont}{\small} % Global footer font size
 \pagestyle{fancy}
 \fancyhf{} % Clear all headers/footers
 % \fancyhead[L]{\course} % Empty header
-\fancyhead[L]{Nom : } % Empty header
+\fancyhead[L]{\small Nom : } % Empty header
 % \fancyhead[C]{\doctitle} % Empty header
-\fancyhead[R]{\doctitle\  -- \release\version}
+\fancyhead[R]{\small \doctitle\  -- \release\version}
 
-\fancyfoot[R]{Page \thepage\ sur \pageref{LastPage}}
-\fancyfoot[L]{\course\ : \docsubtitle}
+\fancyfoot[R]{\small Page \thepage\ sur \pageref{LastPage}}
+\fancyfoot[L]{\small \course\ : \docsubtitle}
 
 \ifdefined\withanswers
 	\fancyfoot[C]{\color{red}\textbf{CORRECTIF}}
@@ -91,35 +100,49 @@
 	\fancyhf{}                      % Clear all headers/footers for the first page
 	% \fancyhead[L]{\course}          % Custom header for the first page
 	% \fancyhead[C]{\doctitle}
-	% \fancyhead[R]{\release\version}
+	\fancyhead[R]{\small \release\version}
 
-	\fancyfoot[R]{Page \thepage\ sur \pageref{LastPage}}
-	\fancyfoot[L]{\docsubtitle}
+	\fancyfoot[R]{\small Page \thepage\ sur \pageref{LastPage}}
 
 	\ifdefined\withanswers
 		\fancyfoot[C]{\color{red}\textbf{CORRECTIF}}
 	\fi
 
 	\renewcommand{\headrulewidth}{0pt}
-	\renewcommand{\footrulewidth}{0.4pt}
-	\newgeometry{top=0.5cm, bottom=0.2cm, left=1.5cm, right=1.5cm}
+	\renewcommand{\footrulewidth}{0pt}
+	% \newgeometry{top=0.5cm, bottom=0.2cm, left=1.8cm, right=1.8cm}
 }
 
 
 % \newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
-\newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
-\newcommand{\corrblock}[1]{\color{red}{#1}}
-\newcommand{\corr}[1]{\textcolor{red}{#1}}
-\newcommand{\corrbf}[1]{\textcolor{red}{\textbf{#1}}}
 \newcommand{\ifnotcorr}[1]{
 	\ifx\withanswers\undefined
 		#1
 	\fi
 }
+\newcommand{\ifcorr}[1]{
+	\ifdefined\withanswers
+		#1
+	\fi
+}
+\newcommand{\ifcorrelse}[2]{
+	\ifdefined\withanswers
+		#1
+	\else
+		#2
+	\fi
+}
+\newcommand{\answerblank}[1]{\ifdefined\withanswers\else\vspace{#1}\fi}
+\newcommand{\corr}[1]{\ifcorr{\textcolor{red}{#1}}}
+\newcommand{\corrr}[2]{\ifcorrelse{\textcolor{red}{#1}}{#2}}
+\newcommand{\corrbf}[2]{\ifcorrelse{\textcolor{red}{\textbf{#1}}}{#2}}
+\newcommand{\corrblock}[2]{\ifcorrelse{{\setstretch{1} \color{red}#1}}{#2}}
+
 
 \newcounter{qcnt}
 \newcommand{\question}{\par\noindent\refstepcounter{qcnt}
 	\par\large\underline{\textbf{Question \arabic{qcnt}:}}\normalsize\par\noindent}
+
 
 \newcommand{\inlineanswer}[1]{
 	\ifdefined\withanswers
@@ -177,6 +200,8 @@
 	\noindent \hrulefill
 }
 
+% usage : \dotedline{10cm}
+\newcommand{\dotedline}[1]{\makebox[#1]{\dotfill}}
 
 \newcommand{\drawmultilines}[1]{%
 	\foreach \n in {1,...,#1} {%
@@ -195,3 +220,8 @@
 \newcommand{\ifeabs}[2]{
 	\ifthenelse{\equal{\version}{D}}{#1}{#2}
 }
+
+
+\newcommand{\checkboxEmpty}{$\square$} % Define an empty checkbox symbol
+\newcommand{\checkboxChecked}{$\checkmark$} % Define a checked checkbox symbol
+

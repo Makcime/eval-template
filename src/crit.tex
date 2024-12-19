@@ -14,120 +14,114 @@
 			\xdef\answerrow{\answerrow & \strut} % '&' for items except for the last in the answer row
 		\fi
 	}
+
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
 
+\vspace{0.5cm}
+{\small
+	\begin{spacing}{1.2}
+		\tcolorbox[colframe=black, colback=white, boxrule=1pt, width=\textwidth]
+		% Main Table Content
+		\renewcommand{\arraystretch}{1.4}
+		\begin{center}
+			\textbf{Couleur globale} \\[0.3cm]
+			\begin{tikzpicture}
+				% Define sizes for arrows
+				\def\cellWidth{1.3} % Width of the rectangular part
+				\def\cellHeight{1}  % Height of the arrow
+				\def\tipWidth{0.5}  % Width of the arrow tip
 
-\section*{}
- % Targeted competences and table for grading can be set here. For example:
- { \small
-  \begin{spacing}{1.2}
-	  \begin{tabularx}{\textwidth}{|X|}
-		  \hline
-		  \parbox{\dimexpr\textwidth-2\tabcolsep\relax}{
-			  \strut
-			  \textbf{Couleur globale}
-			  \begin{center}
-				  \renewcommand{\arraystretch}{1.3}
-				  \begin{tabular}{| *{12}{C{0.8cm}|} }
-					  \hline
-					  R1 & R2 & R3 & O1 & O2 & O3 & V1 & V2 & V3 & B1 & B2 & B3 \\
-					  \hline
-					  % \rule{0pt}{6ex}\answerrow \\ % Use the answer row constructed above
-					  % \hline
-				  \end{tabular}
-			  \end{center}
-		  } \\
-		  \hline
-		  \parbox{\dimexpr\textwidth-2\tabcolsep\relax}{
-			  \strut
-			  \textbf{Couleur par question}
-			  % \vspace{1.2cm}
-			  \begin{center}
-				  \renewcommand{\arraystretch}{1.5}
-				  \begin{tabular}{| *{\value{qcntvalue}}{C{1.5cm}|} }
-					  \hline
-					  \tableheader \\ % Use the header constructed above
-					  \hline
-					  % \rule{0pt}{6ex}\answerrow \\ % Use the answer row constructed above
-					  % \hline
-				  \end{tabular}
-			  \end{center}
-		  } \\
-		  \hline
-		  \parbox{\dimexpr\textwidth-2\tabcolsep\relax}{
-			  \strut
-			  \textbf{Remarques : }
-			  \versions{}{}{}{Version EABS.}
-			  \vspace{0.5cm}
-			  \strut
-		  } \\
-		  \hline
-	  \end{tabularx}
-  \end{spacing}
- }
+				% Table entries
+				\newcommand{\tableEntries}{R1,R2,R3,O1,O2,O3,V1,V2,V3,B1,B2,B3}
+
+				% Initial position
+				\coordinate (start) at (0,0);
+
+				% Draw each arrow
+				\foreach \entry [count=\i] in \tableEntries {
+					% Define points of the arrow
+					\coordinate (A) at (start);                               % Bottom-left
+					\coordinate (B) at ($(A) + (\cellWidth,0)$);             % Bottom-right
+					\coordinate (C) at ($(B) + (\tipWidth,0.5*\cellHeight)$); % Arrow tip
+					\coordinate (D) at ($(B) + (0,\cellHeight)$);            % Top-right
+					\coordinate (E) at ($(A) + (0,\cellHeight)$);            % Top-left
+					\coordinate (F) at ($(A) + (\tipWidth,0.5*\cellHeight)$); % Top of tip
+
+					% Draw arrow
+					(A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle; % Fill the arrow
+					\draw[thick] (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;   % Border for the arrow
+
+					% Place text in the arrow
+					\node at ($(A)!0.5!(C)+(0,0.25*\cellHeight)$) {\textbf{\entry}};
+
+					% Update start position for next arrow (move to arrow tip start)
+					\coordinate (start) at (B); % Shift only to the rectangle's right edge
+				}
+			\end{tikzpicture}
+		\end{center}
+		\vspace{0.3cm}
+		\tcblower
+
+		\vspace{0.3cm}
+		\renewcommand{\arraystretch}{1.5}
+		\begin{center}
+			\textbf{Couleur par question} \\[0.3cm]
+			\begin{tabular}{| *{12}{C{1.5cm}|} }
+				\hline
+				\tableheader \\ % Use the header constructed above
+				\hline
+				% \rule{0pt}{6ex}\answerrow \\ % Use the answer row constructed above
+				% \hline
+			\end{tabular}
+		\end{center}
+		\vspace{0.3cm}
+
+		% \noindent\makebox[\textwidth]{\rule[0.5ex]{\textwidth}{0.5pt}}\\[0.3cm]
+
+		\textbf{Remarques : } \\
+		\versions{}{}{}{Version EABS.}
+
+		\endtcolorbox
+	\end{spacing}
+}
 
 
- { \small
-  \subsection*{Objectifs}
-  % Targeted competences and table for grading can be set here. For example:
-  \begin{spacing}{1.5}
-	  % \begin{tabularx}{\textwidth}{|X|}
-	  %  \hline
-	  % -		  \textbf{Je suis capable de...}
-	  % -		  \begin{itemize}
-	  % -			  \item Item 1
-	  % -			        \begin{itemize}[label={}]
-	  % -				        \item sub item 1
-	  % -				        \item sub item 2
-	  % -			        \end{itemize}
-	  % -			  \item Item 2
-	  % -		  \end{itemize} \\
-	  %  \hline
-	  % \end{tabularx}
+\vspace{0.5cm}
+{ \small
+	\setstretch{1}
+	\tcolorbox[colframe=black, colback=white, boxrule=1pt, width=\textwidth]
+	\subsection*{Objectifs}
 
-	  % \noindent
-	  % \begin{tabularx}{\textwidth}{|X*{5}{c}|}
-	  %  \hline
-	  %  % \textbf{Je suis capable de...}                                                                      & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
-	  %  \textbf{Je suis capable de...}                                                                      &            &            &            &            &            \\
-	  %  \hline
-	  %  Effectuer des divisions Euclidienne par calcul écrit.                                               & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
-	  %  \hline
-	  %  Formuler et utiliser dans différents contextes la relation fondamentale de la division Euclidienne. & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
-	  %  \hline
-	  %  Reconnaitre des nombres premiers entre eux.                                                         & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
-	  %  \hline
-	  %  Déterminer l’ensemble des diviseurs et des multiples d’un nombre.                                   & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
-	  %  \hline
-	  %  Déterminer les diviseurs communs et le PGCD de deux nombres ou plus.                                & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
-	  %  \hline
-	  %  Déterminer les multiples communs et le PPCM de deux nombres ou plus.                                & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
-	  %  \hline
-	  %  Résoudre des problèmes relatifs au PGCD ou PPCM.                                                    & \ding{109} & \ding{109} & \ding{109} & \ding{109} & \ding{109} \\
-	  %  \hline
-	  % \end{tabularx}
+	% \noindent
+	% \begin{tabularx}{\textwidth}{|X| *{2}{c|}}
+	% 	\hline
+	% 	% \textbf{Je suis capable de...}                                                                      & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+	% 	\textbf{Je suis capable de...}                                                                      &           &           \\
+	% 	\hline
+	% 	Effectuer des divisions Euclidienne par calcul écrit.                                               & \ding{51} & \ding{55} \\
+	% 	\hline
+	% 	Formuler et utiliser dans différents contextes la relation fondamentale de la division Euclidienne. & \ding{51} & \ding{55} \\
+	% 	\hline
+	% 	Reconnaitre des nombres premiers entre eux.                                                         & \ding{51} & \ding{55} \\
+	% 	\hline
+	% 	Déterminer l’ensemble des diviseurs et des multiples d’un nombre.                                   & \ding{51} & \ding{55} \\
+	% 	\hline
+	% 	Déterminer les diviseurs communs et le PGCD de deux nombres ou plus.                                & \ding{51} & \ding{55} \\
+	% 	\hline
+	% 	Déterminer les multiples communs et le PPCM de deux nombres ou plus.                                & \ding{51} & \ding{55} \\
+	% 	\hline
+	% 	Résoudre des problèmes relatifs au PGCD ou PPCM.                                                    & \ding{51} & \ding{55} \\
+	% 	\hline
+	% \end{tabularx}
 
-	  \noindent
-	  \begin{tabularx}{\textwidth}{|X| *{2}{c|}}
-		  \hline
-		  % \textbf{Je suis capable de...}                                                                      & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
-		  \textbf{Je suis capable de...}                                                                      &           &           \\
-		  \hline
-		  Effectuer des divisions Euclidienne par calcul écrit.                                               & \ding{51} & \ding{55} \\
-		  \hline
-		  Formuler et utiliser dans différents contextes la relation fondamentale de la division Euclidienne. & \ding{51} & \ding{55} \\
-		  \hline
-		  Reconnaitre des nombres premiers entre eux.                                                         & \ding{51} & \ding{55} \\
-		  \hline
-		  Déterminer l’ensemble des diviseurs et des multiples d’un nombre.                                   & \ding{51} & \ding{55} \\
-		  \hline
-		  Déterminer les diviseurs communs et le PGCD de deux nombres ou plus.                                & \ding{51} & \ding{55} \\
-		  \hline
-		  Déterminer les multiples communs et le PPCM de deux nombres ou plus.                                & \ding{51} & \ding{55} \\
-		  \hline
-		  Résoudre des problèmes relatifs au PGCD ou PPCM.                                                    & \ding{51} & \ding{55} \\
-		  \hline
-	  \end{tabularx}
+	\textbf{Je suis capable de...}
+	\begin{itemize}[label=\checkboxEmpty]
+		\item Construire, à l’aide d’instruments, l’image d’une figure par une rotation.
+		\item Déterminer des rotations dans des polygones réguliers et des figures infinies.
+		\item Rechercher des points fixes et droites fixes pour chacune des transformations du plan.
+		\item Construire l’image d’une droite et d’une demi-droite par chacune des transformations.
+		\item Utiliser les propriétés des invariants pour effectuer des constructions rapides ou pour justifier des caractéristiques de figures.
+	\end{itemize}
 
-  \end{spacing}
- }
+	\endtcolorbox
+}
