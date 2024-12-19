@@ -42,7 +42,7 @@
 \RequirePackage{pgf}
 \RequirePackage{ulem}
 \RequirePackage{pifont}
-\RequirePackage{tcolorbox}
+\RequirePackage[most]{tcolorbox}
 
 
 % set default enum to alpha
@@ -140,8 +140,33 @@
 
 
 \newcounter{qcnt}
-\newcommand{\question}{\par\noindent\refstepcounter{qcnt}
-	\par\large\underline{\textbf{Question \arabic{qcnt}:}}\normalsize\par\noindent}
+% \newcommand{\question}{\par\noindent\refstepcounter{qcnt}
+% 	\par\large\underline{\textbf{Question \arabic{qcnt}:}}\normalsize\par\noindent}
+
+% Define the \question command
+\newcommand{\question}{%
+	\stepcounter{qcnt}%
+	\begin{tcolorbox}[
+			colback=gray!60,     % Background color
+			colframe=gray!60,    % Frame color
+			width=\textwidth,    % Full text width
+			arc=5mm,             % Rounded corners
+			auto outer arc,      % Auto adjust arc size
+			left=5mm,            % Inner left padding
+			right=5mm,           % Inner right padding
+			boxrule=0.5mm,       % Frame thickness
+		]
+		% "Question x" on the left
+		\Large{\textcolor{white}{\textbf{Question \arabic{qcnt}}}}%
+		\hfill
+		% White box on the right with no border
+		% Adjust spacing as desired for size
+		\colorbox{white}{\hspace*{1em}\vphantom{X}\hspace*{1em}}
+	\end{tcolorbox}
+	% \vspace{1em} % Add vertical spacing after the box
+	\normalsize\par\noindent
+}
+
 
 
 \newcommand{\inlineanswer}[1]{
