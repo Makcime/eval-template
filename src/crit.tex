@@ -1,19 +1,42 @@
 
 \newcounter{qcntvalue}
-\setcounter{qcntvalue}{5}
+\setcounter{qcntvalue}{9}
 
 % Generate the table header and the empty answer row
-\newcommand{\tableheader}{}
-\newcommand{\answerrow}{}
+\newcommand{\tableheader}{}  % Initialize empty header
+\newcommand{\answerrow}{}    % Initialize empty answer row
 \foreach \n in {1,...,\value{qcntvalue}}{
-		\ifnum\n=\value{qcntvalue}
-			\xdef\tableheader{\tableheader Q\n} % No '&' for the last item
-			\xdef\answerrow{\answerrow\strut} % No '&' for the last item in the answer row
-		\else
-			\xdef\tableheader{\tableheader Q\n &} % '&' for items except for the last
-			\xdef\answerrow{\answerrow & \strut} % '&' for items except for the last in the answer row
-		\fi
+		\xdef\tableheader{\tableheader Q\n &} % Add '&' for all items
+		\xdef\answerrow{\answerrow \strut &}  % Add '&' for all items
 	}
+
+% Add an extra empty cell at the end
+\xdef\tableheader{\tableheader ~}  % Append an empty cell
+\xdef\answerrow{\answerrow \strut} % Append an empty answer cell
+
+\newcommand{\drawQcircles}{%
+	\begin{center} % Center the TikZ picture on the page
+		\begin{tikzpicture}[every node/.style={draw, thick, circle, minimum size=1cm, inner sep=2pt, fill=white}]
+			% Define horizontal and vertical separation
+			\def\circleSep{1.4}
+			\def\verticalSep{0.8}
+			% Starting point for the first pair of circles
+			\coordinate (start) at (0,0);
+			% Loop from 1 to the value of qcntvalue
+			\foreach \n in {1,...,\value{qcntvalue}} {%
+					% Bottom empty circle positioned vertically below the Q circle (also filled white)
+					\node (A\n) at ($(start)+(0,-\verticalSep)$) {};
+
+					% Top circle with Q label (filled white)
+					\node (Q\n) at (start) {\textbf{Q\n}};
+
+					% Move the starting point to the right for the next pair
+					\coordinate (start) at ($(start)+(\circleSep,0)$);
+				}
+		\end{tikzpicture}
+	\end{center}%
+}
+
 
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
 
@@ -58,25 +81,35 @@
 					\coordinate (start) at (B); % Shift only to the rectangle's right edge
 				}
 			\end{tikzpicture}
+
+			{\small
+			Total = \ddotfill[1cm]/\ifeabs{20}{26}\\
+			(V1 = \ifeabs{10/20}{13/26})
+			}
 		\end{center}
-		\vspace{0.3cm}
+		% \vspace{0.3cm}
+
+		% ---------------------------------------------------------
 		\tcblower
 
 		\vspace{0.3cm}
-		\renewcommand{\arraystretch}{1.5}
 		\begin{center}
 			\textbf{Couleur par question} \\[0.3cm]
-			\begin{tabular}{| *{12}{C{1.5cm}|} }
-				\hline
-				\tableheader \\ % Use the header constructed above
-				\hline
-				% \rule{0pt}{6ex}\answerrow \\ % Use the answer row constructed above
-				% \hline
-			\end{tabular}
+			% 	\begin{tabular}{| *{12}{C{1.2cm}|} }
+			% 		\hline
+			% 		\tableheader \\ % Use the header constructed above
+			% 		\hline
+			% 		\answerrow   \\    % Expands to "& \strut & \strut ... & \strut"
+			% 		\hline
+			% 		% \rule{0pt}{6ex}\answerrow \\ % Use the answer row constructed above
+			% 		% \hline
+			% 	\end{tabular}
+			\drawQcircles
 		\end{center}
 		\vspace{0.3cm}
 
-		% \noindent\makebox[\textwidth]{\rule[0.5ex]{\textwidth}{0.5pt}}\\[0.3cm]
+		% ---------------------------------------------------------
+		\tcbline
 
 		\textbf{Remarques : } \\
 		\versions{}{}{}{Version EABS.}
@@ -85,43 +118,23 @@
 	\end{spacing}
 }
 
-
-\vspace{0.5cm}
+% \vspace{0.5cm}
+\vfill
 { \small
 	\setstretch{1}
 	\tcolorbox[colframe=black, colback=white, boxrule=1pt, width=\textwidth]
 	\subsection*{Objectifs}
 
-	% \noindent
-	% \begin{tabularx}{\textwidth}{|X| *{2}{c|}}
-	% 	\hline
-	% 	% \textbf{Je suis capable de...}                                                                      & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
-	% 	\textbf{Je suis capable de...}                                                                      &           &           \\
-	% 	\hline
-	% 	Effectuer des divisions Euclidienne par calcul écrit.                                               & \ding{51} & \ding{55} \\
-	% 	\hline
-	% 	Formuler et utiliser dans différents contextes la relation fondamentale de la division Euclidienne. & \ding{51} & \ding{55} \\
-	% 	\hline
-	% 	Reconnaitre des nombres premiers entre eux.                                                         & \ding{51} & \ding{55} \\
-	% 	\hline
-	% 	Déterminer l’ensemble des diviseurs et des multiples d’un nombre.                                   & \ding{51} & \ding{55} \\
-	% 	\hline
-	% 	Déterminer les diviseurs communs et le PGCD de deux nombres ou plus.                                & \ding{51} & \ding{55} \\
-	% 	\hline
-	% 	Déterminer les multiples communs et le PPCM de deux nombres ou plus.                                & \ding{51} & \ding{55} \\
-	% 	\hline
-	% 	Résoudre des problèmes relatifs au PGCD ou PPCM.                                                    & \ding{51} & \ding{55} \\
-	% 	\hline
-	% \end{tabularx}
-
 	\textbf{Je suis capable de...}
-	\begin{itemize}[label=\checkboxEmpty]
-		\item Construire, à l’aide d’instruments, l’image d’une figure par une rotation.
-		\item Déterminer des rotations dans des polygones réguliers et des figures infinies.
-		\item Rechercher des points fixes et droites fixes pour chacune des transformations du plan.
-		\item Construire l’image d’une droite et d’une demi-droite par chacune des transformations.
-		\item Utiliser les propriétés des invariants pour effectuer des constructions rapides ou pour justifier des caractéristiques de figures.
+	\begin{itemize}[label={\bfseries \checkboxEmpty}]
+		\item Simplifier une fraction et/ou la rendre irréductible.
+		\item Transformer l’écriture fractionnaire d’un nombre en écriture décimale.
+		\item Donner la valeur approchée d’une fraction à l’unité, à 0,1 ; 0,01 ; 0,001 près.
+		\item Encadrer un quotient.
+		\item Placer des fractions à termes entiers sur une droite graduée.
+		\item Classer des fractions par ordre croissant et décroissant.
 	\end{itemize}
 
 	\endtcolorbox
 }
+\vfill
