@@ -43,6 +43,19 @@
 \RequirePackage{ulem}
 \RequirePackage{pifont}
 \RequirePackage[most]{tcolorbox}
+\RequirePackage{xfp}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Typography, change document font
+% \RequirePackage[tt=false, type1=true]{libertine}
+% \RequirePackage[varqu]{zi4}
+% \RequirePackage[libertine]{newtxmath}
+% % \RequirePackage[T1]{fontenc}
+
+\RequirePackage[protrusion=true,expansion=true]{microtype}
+
+% Disable paragraph indentation, and increase gap
+\RequirePackage{parskip}
 
 
 % set default enum to alpha
@@ -86,7 +99,7 @@
 % \fancyhead[C]{\doctitle} % Empty header
 \fancyhead[R]{\small \doctitle\  -- \release\version}
 
-\fancyfoot[R]{\small Page \thepage\ sur \pageref{LastPage}}
+\fancyfoot[R]{\small Page \thepage\ sur \pageref{RealLastPage}}
 \fancyfoot[L]{\small \course\ : \docsubtitle}
 
 \ifdefined\withanswers
@@ -102,7 +115,7 @@
 	% \fancyhead[C]{\doctitle}
 	\fancyhead[R]{\small \release\version}
 
-	\fancyfoot[R]{\small Page \thepage\ sur \pageref{LastPage}}
+	\fancyfoot[R]{\small Page \thepage\ sur \pageref{RealLastPage}}
 
 	\ifdefined\withanswers
 		\fancyfoot[C]{\color{red}\textbf{CORRECTIF}}
@@ -140,13 +153,17 @@
 
 \ifnotcorr{
 	%\AtEndDocument{\cleardoublepage}
-	\AtEndDocument{% based in \cleardoublepage
+
+	\AtEndDocument{%
+		\label{RealLastPage}%
 		\clearpage
 		\ifodd\value{page}\else
 			\thispagestyle{empty}%
-			\hbox{}\newpage
-		\fi
+			\null%
+			\clearpage%
+		\fi%
 	}
+
 }
 
 \newcounter{qcnt}
@@ -179,6 +196,7 @@
 
 \newcommand{\question}[1][]{%
 	\stepcounter{qcnt}%
+
 	\begin{tcolorbox}[%
 			width=\textwidth,    % Full text width
 			boxrule=0.5mm,       % Frame thickness
@@ -283,4 +301,6 @@
 	}%
 }
 \newcommand{\checkboxChecked}{$\checkmark$} % Define a checked checkbox symbol
+
+\setlist[enumerate,1]{label=\textbf{(\alph*)}, labelsep=1em}
 

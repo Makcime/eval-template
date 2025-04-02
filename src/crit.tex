@@ -1,6 +1,8 @@
 
 \newcounter{qcntvalue}
-\setcounter{qcntvalue}{9}
+\setcounter{qcntvalue}{5}
+\newcommand{\Total}{18} % total des points/pages
+\newcommand{\HalfTotal}{\inteval{\Total/2}} % calcul automatique de la moitié
 
 % Generate the table header and the empty answer row
 \newcommand{\tableheader}{}  % Initialize empty header
@@ -19,7 +21,7 @@
 		\begin{tikzpicture}[every node/.style={draw, thick, circle, minimum size=1cm, inner sep=2pt, fill=white}]
 			% Define horizontal and vertical separation
 			\def\circleSep{1.4}
-			\def\verticalSep{0.8}
+			\def\verticalSep{0.5}
 			% Starting point for the first pair of circles
 			\coordinate (start) at (0,0);
 			% Loop from 1 to the value of qcntvalue
@@ -40,7 +42,8 @@
 
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
 
-\vspace{0.5cm}
+% \vspace{0.5cm}
+\vfill
 {\small
 	\begin{spacing}{1.2}
 		\tcolorbox[colframe=black, colback=white, boxrule=1pt, width=\textwidth]
@@ -83,8 +86,8 @@
 			\end{tikzpicture}
 
 			{\small
-			Total = \ddotfill[1cm]/\ifeabs{20}{26}\\
-			(V1 = \ifeabs{10/20}{13/26})
+			Total = \ddotfill[1cm]/\Total\\
+			\textit{(V1 = \HalfTotal/\Total)}
 			}
 		\end{center}
 		% \vspace{0.3cm}
@@ -127,12 +130,9 @@
 
 	\textbf{Je suis capable de...}
 	\begin{itemize}[label={\bfseries \checkboxEmpty}]
-		\item Simplifier une fraction et/ou la rendre irréductible.
-		\item Transformer l’écriture fractionnaire d’un nombre en écriture décimale.
-		\item Donner la valeur approchée d’une fraction à l’unité, à 0,1 ; 0,01 ; 0,001 près.
-		\item Encadrer un quotient.
-		\item Placer des fractions à termes entiers sur une droite graduée.
-		\item Classer des fractions par ordre croissant et décroissant.
+		\item Comparer les croissances des fonctions exponentielles.
+		\item Résoudre une équation exponentielle simple.
+		\item Utiliser une fonction logarithme ou exponentielle pour résoudre un problème.
 	\end{itemize}
 
 	\endtcolorbox
