@@ -151,20 +151,20 @@
 \newcommand{\corrbf}[2]{\ifcorrelse{\textcolor{red}{\textbf{#1}}}{#2}}
 \newcommand{\corrblock}[2]{\ifcorrelse{{\setstretch{1} \color{red}#1}}{#2}}
 
-\ifnotcorr{
-	%\AtEndDocument{\cleardoublepage}
+% \ifnotcorr{
+%\AtEndDocument{\cleardoublepage}
 
-	\AtEndDocument{%
-		\label{RealLastPage}%
-		\clearpage
-		\ifodd\value{page}\else
-			\thispagestyle{empty}%
-			\null%
-			\clearpage%
-		\fi%
-	}
-
+\AtEndDocument{%
+	\label{RealLastPage}%
+	\clearpage
+	\ifodd\value{page}\else
+		\thispagestyle{empty}%
+		\null%
+		\clearpage%
+	\fi%
 }
+
+% }
 
 \newcounter{qcnt}
 % \newcommand{\question}{\par\noindent\refstepcounter{qcnt}
@@ -271,6 +271,7 @@
 }
 
 \newcommand{\ddotfill}[1][3cm]{\makebox[#1]{\dotfill}}
+\newcommand{\lldots}{\ldots.\ldots}
 
 % usage : \dotedline{10cm}
 \newcommand{\dotedline}[1]{\makebox[#1]{\dotfill}}
