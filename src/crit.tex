@@ -1,7 +1,7 @@
 % Generate the table header and the empty answer row
 \newcommand{\tableheader}{}  % Initialize empty header
 \newcommand{\answerrow}{}    % Initialize empty answer row
-\foreach \n in {1,...,\value{qcntvalue}}{
+\foreach \n in {1,...,\GetTotalQuestions}{
 		\xdef\tableheader{\tableheader Q\n &} % Add '&' for all items
 		\xdef\answerrow{\answerrow \strut &}  % Add '&' for all items
 	}
@@ -19,7 +19,7 @@
 			% Starting point for the first pair of circles
 			\coordinate (start) at (0,0);
 			% Loop from 1 to the value of qcntvalue
-			\foreach \n in {1,...,\value{qcntvalue}} {%
+			\foreach \n in {1,...,\GetTotalQuestions} {%
 					% Bottom empty circle positioned vertically below the Q circle (also filled white)
 					\node (A\n) at ($(start)+(0,-\verticalSep)$) {};
 
