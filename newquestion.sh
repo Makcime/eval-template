@@ -13,9 +13,6 @@ next_q_num=$((max_q_num + 1))
 
 # Create the new files
 cp  "src/questions/qx.tex" "src/questions/q${next_q_num}.tex"
-echo "\inlineanswer{a${next_q_num}}" >> "src/questions/q${next_q_num}.tex"
-cp  "src/answers/ax.tex" "src/answers/a${next_q_num}.tex"
-
 # Feedback to the user
-echo "Created src/uestions/q${next_q_num}.tex and src/answers/a${next_q_num}.tex"
+echo "Created src/uestions/q${next_q_num}.tex"
 
