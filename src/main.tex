@@ -1,10 +1,7 @@
 \documentclass[14pt, a4paper]{extarticle}
-\usepackage{src/evaltemplate}
+\usepackage{base/evaltemplate}
 
-% Define your document title and subtitle
-\newcommand{\doctitle}{Évaluation journal de bord n$^{\circ}$2}
-\newcommand{\docsubtitle}{Chapitre X - Titre du chapitre}
-\newcommand{\course}{Mathématiques}
+\input{src/config.tex}
 
 \begin{document}
 
@@ -20,14 +17,6 @@
 	\newpage
 }
 
-% \section{Première partie}
-\inputqora{1}
-\input{src/questions/q2}
-% ... add more questions as needed
-
-\newpage
-% \section{Deuxème partie}
-\inputqora{3}
-% ... add more answers as needed
+\qseq
 
 \end{document}

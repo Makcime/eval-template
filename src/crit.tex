@@ -1,9 +1,3 @@
-
-\newcounter{qcntvalue}
-\setcounter{qcntvalue}{5}
-\newcommand{\Total}{18} % total des points/pages
-\newcommand{\HalfTotal}{\inteval{\Total/2}} % calcul automatique de la moitié
-
 % Generate the table header and the empty answer row
 \newcommand{\tableheader}{}  % Initialize empty header
 \newcommand{\answerrow}{}    % Initialize empty answer row
@@ -98,15 +92,6 @@
 		\vspace{0.3cm}
 		\begin{center}
 			\textbf{Couleur par question} \\[0.3cm]
-			% 	\begin{tabular}{| *{12}{C{1.2cm}|} }
-			% 		\hline
-			% 		\tableheader \\ % Use the header constructed above
-			% 		\hline
-			% 		\answerrow   \\    % Expands to "& \strut & \strut ... & \strut"
-			% 		\hline
-			% 		% \rule{0pt}{6ex}\answerrow \\ % Use the answer row constructed above
-			% 		% \hline
-			% 	\end{tabular}
 			\drawQcircles
 		\end{center}
 		\vspace{0.3cm}
@@ -121,7 +106,6 @@
 	\end{spacing}
 }
 
-% \vspace{0.5cm}
 \vfill
 { \small
 	\setstretch{1}
@@ -130,9 +114,7 @@
 
 	\textbf{Je suis capable de...}
 	\begin{itemize}[label={\bfseries \checkboxEmpty}]
-		\item Comparer les croissances des fonctions exponentielles.
-		\item Résoudre une équation exponentielle simple.
-		\item Utiliser une fonction logarithme ou exponentielle pour résoudre un problème.
+		\objectives
 	\end{itemize}
 
 	\endtcolorbox
