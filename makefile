@@ -20,6 +20,7 @@ correctif_A correctif_B correctif_C correctif_D: | build build/corr/$(@:correcti
 # Concatenate regular versions
 concatenate: | build
 	pdfunite $(filter-out build/$(name)_$(release)_ABCD.pdf,$(wildcard build/$(name)_$(release)_A.pdf build/$(name)_$(release)_B.pdf build/$(name)_$(release)_C.pdf build/$(name)_$(release)_D.pdf)) build/$(name)_$(release)_ABCD.pdf
+	pdfunite $(filter-out build/$(name)_$(release)_ABC.pdf,$(wildcard build/$(name)_$(release)_A.pdf build/$(name)_$(release)_B.pdf build/$(name)_$(release)_C.pdf)) build/$(name)_$(release)_ABC.pdf
 
 # Concatenate correctif versions
 concatenate_correctif: | build
