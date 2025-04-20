@@ -1,45 +1,17 @@
-# eval-template
-Latex template for evaluations
+# Chapitre 8 -- Opérations sur les rationnels
 
-# Versions
-Use the command \versions{A}{B}{C}{D} to make multiple versions of an eval, to avoid cheating. 
+| Question | Points  | Répartition                                                                                                                                                                                                                                                                                                                                                                      | Remarque                                                                       |
+| -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| 1        | 10      | 2 pt par calcul                                                                                                                                                                                                                                                                                                                                                                  | Étape intermédiaire correcte, mais absence de réponse ou réponse fausse (1 pt) |
+| 2        | 6       | 2 pt par calcul<br>1 pt pour la réponse<br>1 pt pour la justification                                                                                                                                                                                                                                                                                                            |                                                                                |
+| 3        | 8       | 2 pt par calcul                                                                                                                                                                                                                                                                                                                                                                  | Étape intermédiaire correcte, mais absence de réponse ou réponse fausse (1 pt) |
+| 4        | 0‑1‑2‑3 | L'élève additionne correctement les 3 parts données. (1 pt)<br>L'élève soustrait ce résultat de 1. (1 pt)<br>L'élève écrit la réponse sous forme irréductible. (1 pt)<br>OU<br>L'élève soustrait correctement, de manière successive ou non, les 3 parts de l'unité. (2 pt)<br>L'élève écrit la réponse sous forme irréductible. (1 pt)<br>OU<br>Toute autre méthode équivalente |                                                                                |
 
-```
- \begin{table}[h!]
-	\centering
-	\renewcommand{\arraystretch}{3}
-	\begin{tabular}{|>{\bfseries}l|c|c|c|c|}
-		\hline
-		\versions
-		{ % Version A
-		                          & $A(-4; 11)$ & $B(\_\_; \_\_)$ & $C(\_\_; \_\_)$ & $D(\_\_; \_\_)$ \\ \hline
-		$S_y$                     &             &                 &                 &                 \\ \hline
-		$S_0$                     &             & $(-17; 13)$     &                 &                 \\ \hline
-		$t_{\overrightarrow{0A}}$ &             &                 & $(2; -3)$       &                 \\ \hline
-		$r_{0, -90^\circ}$        &             &                 &                 &                 \\ \hline
-		$S_x$                     &             &                 &                 & $(-6 ; -23)$    \\ \hline
-		$r_{0, +90^\circ}$        &             &                 &                 &                 \\ \hline
-		}
-		{ %Version B
-		                          & $A(-2; 15)$ & $B(\_\_; \_\_)$ & $C(\_\_; \_\_)$ & $D(\_\_; \_\_)$ \\ \hline
-		$S_0$                     &             & $(-13; 18)$     &                 &                 \\ \hline
-		$t_{\overrightarrow{0A}}$ &             &                 & $(1; -2)$       &                 \\ \hline
-		$r_{0, -90^\circ}$        &             &                 &                 &                 \\ \hline
-		$S_y$                     &             &                 &                 &                 \\ \hline
-		$r_{0, +90^\circ}$        &             &                 &                 &                 \\ \hline
-		$S_x$                     &             &                 &                 & $(-8 ; -13)$    \\ \hline
-		}
-		{ %Version C
-		                          & $A(-9; 7)$  & $B(\_\_; \_\_)$ & $C(\_\_; \_\_)$ & $D(\_\_; \_\_)$ \\ \hline
-		$r_{0, -90^\circ}$        &             &                 &                 &                 \\ \hline
-		$S_y$                     &             &                 &                 &                 \\ \hline
-		$S_x$                     &             &                 &                 & $(-10 ; -8)$    \\ \hline
-		$S_0$                     &             & $(-16; 14)$     &                 &                 \\ \hline
-		$t_{\overrightarrow{0A}}$ &             &                 & $(6; -5)$       &                 \\ \hline
-		$r_{0, +90^\circ}$        &             &                 &                 &                 \\ \hline
-		}
-		{ %Version D
-		}
-	\end{tabular}
-\end{table}
-```
+## EABS
+
+| Question | Points  | Répartition                                                                                                                                                                                                                                                                                                                                                                      | Remarque                                                                       |
+| -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| 1        | 8       | 2 pt par calcul                                                                                                                                                                                                                                                                                                                                                                  | Étape intermédiaire correcte, mais absence de réponse ou réponse fausse (1 pt) |
+| 2        | 4       | 2 pt par calcul<br>1 pt pour la réponse<br>1 pt pour la justification                                                                                                                                                                                                                                                                                                            |                                                                                |
+| 3        | 6       | 2 pt par calcul                                                                                                                                                                                                                                                                                                                                                                  | Étape intermédiaire correcte, mais absence de réponse ou réponse fausse (1 pt) |
+| 4        | 0‑1‑2‑3 | L'élève additionne correctement les 3 parts données. (1 pt)<br>L'élève soustrait ce résultat de 1. (1 pt)<br>L'élève écrit la réponse sous forme irréductible. (1 pt)<br>OU<br>L'élève soustrait correctement, de manière successive ou non, les 3 parts de l'unité. (2 pt)<br>L'élève écrit la réponse sous forme irréductible. (1 pt)<br>OU<br>Toute autre méthode équivalente |                                                                                |
